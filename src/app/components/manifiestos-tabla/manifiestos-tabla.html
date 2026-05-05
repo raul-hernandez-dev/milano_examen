@@ -4,7 +4,8 @@
   <div class="tabla-header">
     <span class="tabla-titulo">Gestión de Manifiestos</span>
     <div class="tabla-acciones">
-      <input #busquedaInput type="number" placeholder="Buscar ID (F3)..." [(ngModel)]="buscarId" (keyup.enter)="filtrarPorId()" />
+      <input #busquedaInput type="number" placeholder="Buscar ID (F3)..." [(ngModel)]="buscarId"
+        (ngModelChange)="filtrarPorId()" />
       <button class="btn-limpiar" (click)="buscarId = null; cargarTodos()">Limpiar</button>
       <button class="btn-nuevo" (click)="form.abrirNuevo()">+ Nuevo <kbd>F2</kbd></button>
     </div>

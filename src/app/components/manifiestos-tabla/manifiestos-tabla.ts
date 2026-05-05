@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ManifiestosService } from '../../services/manifiestos';
@@ -13,6 +13,7 @@ import { ManifiestoFormComponent } from '../manifiesto-form/manifiesto-form';
   styleUrls: ['./manifiestos-tabla.css']
 })
 export class ManifiestosTablaComponent implements OnInit {
+
   @ViewChild('form') form!: ManifiestoFormComponent;
   @ViewChild('busquedaInput') busquedaInput!: ElementRef<HTMLInputElement>;
 
@@ -22,12 +23,17 @@ export class ManifiestosTablaComponent implements OnInit {
   buscarId: number | null = null;
   manifiestoSeleccionado: Manifiesto | null = null;
 
-  constructor(private manifiestosSvc: ManifiestosService) {}
+  constructor(
+    private manifiestosSvc: ManifiestosService,
+    private cdr: ChangeDetectorRef   
+  ) {}
 
-  ngOnInit() { this.cargarTodos(); }
+  ngOnInit(): void {
+    this.cargarTodos();
+  }
 
   @HostListener('window:keydown', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) {
+  handleKeyboardEvent(event: KeyboardEvent): void {
     if (event.key === 'F3') {
       event.preventDefault();
       this.busquedaInput.nativeElement.focus();
@@ -38,19 +44,41 @@ export class ManifiestosTablaComponent implements OnInit {
     }
   }
 
-  cargarTodos() {
+  cargarTodos(): void {
     this.cargando = true;
+    this.error = '';
     this.manifiestosSvc.getManifiestos().subscribe({
-      next: (res) => { this.manifiestos = res.data; this.cargando = false; },
-      error: () => { this.error = 'Error al cargar'; this.cargando = false; }
+      next: (res) => {
+        this.manifiestos = res.data;
+        this.cargando = false;
+        this.cdr.detectChanges();   
+      },
+      error: () => {
+        this.error = 'Error al cargar';
+        this.cargando = false;
+        this.cdr.detectChanges();
+      }
     });
   }
 
-  filtrarPorId() {
-    if (!this.buscarId) return this.cargarTodos();
+  filtrarPorId(): void {
+    if (!this.buscarId) {
+      this.cargarTodos();
+      return;
+    }
+    this.cargando = true;
+    this.error = '';
     this.manifiestosSvc.getManifiestoPorId(this.buscarId).subscribe({
-      next: (res) => this.manifiestos = res.data ? [res.data] : [],
-      error: () => this.error = 'No encontrado'
+      next: (res) => {
+        this.manifiestos = res.data ? [res.data] : [];
+        this.cargando = false;
+        this.cdr.detectChanges();  
+      },
+      error: () => {
+        this.error = 'No encontrado';
+        this.cargando = false;
+        this.cdr.detectChanges();
+      }
     });
   }
 
@@ -58,11 +86,16 @@ export class ManifiestosTablaComponent implements OnInit {
     return 'badge-' + (estatus || '').toLowerCase().replace(/ /g, '-');
   }
 
-  seleccionarEditar(m: Manifiesto) { this.manifiestoSeleccionado = { ...m }; }
+  seleccionarEditar(m: Manifiesto): void {
+    this.manifiestoSeleccionado = { ...m };
+  }
 
-  eliminar(m: Manifiesto) {
+  eliminar(m: Manifiesto): void {
     if (confirm(`¿Eliminar manifiesto ${m.manifiesto}?`)) {
-      this.manifiestosSvc.eliminarManifiesto(m.id).subscribe(() => this.cargarTodos());
+      this.manifiestosSvc.eliminarManifiesto(m.id).subscribe({
+        next: () => this.cargarTodos(),
+        error: () => alert('Error al eliminar el manifiesto')
+      });
     }
   }
 }
