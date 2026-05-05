@@ -1,0 +1,74 @@
+<div class="modal-overlay" *ngIf="abierto" (click)="cerrar()"></div>
+
+<div class="modal" *ngIf="abierto">
+
+  <div class="modal-header">
+    <h2>{{ modoEdicion ? 'Editar manifiesto' : 'Nuevo manifiesto' }}</h2>
+    <button class="btn-cerrar" (click)="cerrar()">✕</button>
+  </div>
+
+  <div class="modal-body">
+    <div *ngIf="exito" class="alerta exito">{{ exito }}</div>
+    <div *ngIf="error" class="alerta error">{{ error }}</div>
+
+    <div class="grid">
+      <div class="campo">
+        <label>Manifiesto *</label>
+        <input type="text" [(ngModel)]="form.manifiesto" [class.input-error]="error && !form.manifiesto" placeholder="E24587"/>
+      </div>
+      
+      <div class="campo">
+        <label>Transportista *</label>
+        <input type="text" [(ngModel)]="form.transportista" [class.input-error]="error && !form.transportista" placeholder="GARCIA"/>
+      </div>
+
+      <div class="campo">
+        <label>Fecha apertura *</label>
+        <input type="date" [(ngModel)]="form.fecha_apertura" [class.input-error]="error && !form.fecha_apertura"/>
+      </div>
+
+      <div class="campo">
+        <label>Fecha cierre (Opcional)</label>
+        <input type="date" [(ngModel)]="form.fecha_cierre"/>
+      </div>
+
+      <div class="campo">
+        <label>Tipo de camión *</label>
+        <select [(ngModel)]="form.tipo_camion" [class.input-error]="error && !form.tipo_camion">
+          <option value="">Selecciona...</option>
+          <option *ngFor="let t of tiposCamion" [value]="t">{{ t }}</option>
+        </select>
+      </div>
+
+      <div class="campo">
+        <label>Chofer *</label>
+        <input type="text" [(ngModel)]="form.chofer" [class.input-error]="error && !form.chofer" placeholder="CARLOS MENDOZA"/>
+      </div>
+
+      <div class="campo">
+        <label>Placas *</label>
+        <input type="text" [(ngModel)]="form.placas" [class.input-error]="error && !form.placas" placeholder="123ABC"/>
+      </div>
+
+      <div class="campo">
+        <label>Destino *</label>
+        <input type="text" [(ngModel)]="form.destino" [class.input-error]="error && !form.destino" placeholder="GUADALAJARA"/>
+      </div>
+
+      <div class="campo">
+        <label>Estatus *</label>
+        <select [(ngModel)]="form.estatus" [class.input-error]="error && !form.estatus">
+          <option *ngFor="let e of estatuses" [value]="e">{{ e }}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button (click)="cerrar()" [disabled]="guardando">Cancelar</button>
+    <button class="btn-guardar" (click)="guardar()" [disabled]="guardando">
+      {{ guardando ? 'Guardando...' : (modoEdicion ? 'Actualizar' : 'Guardar') }}
+    </button>
+  </div>
+
+</div>

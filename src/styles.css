@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f4f5f7;
+  color: #1a1a2e;
+  font-size: 14px;
+}
+
+input, select {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+button {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.alerta {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 1rem;
+}
+
+.alerta.exito {
+  background: #ebf8f2;
+  color: #276749;
+  border: 1px solid #b2dfcf;
+}
+
+.alerta.error {
+  background: #fff5f5;
+  color: #9b2c2c;
+  border: 1px solid #feb2b2;
+}

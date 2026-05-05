@@ -1,0 +1,200 @@
+.tabla-container {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+}
+
+.tabla-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fafbfc;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.tabla-titulo {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a2e;
+}
+
+.tabla-acciones {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tabla-acciones input {
+  padding: 7px 10px;
+  border: 1px solid #dde1e7;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #1a1a2e;
+  width: 180px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.tabla-acciones input:focus {
+  border-color: #2c5282;
+}
+
+.btn-limpiar {
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid #dde1e7;
+  border-radius: 6px;
+  background: #fff;
+  color: #1a1a2e;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-limpiar:hover {
+  background: #f0f2f5;
+}
+
+.btn-nuevo {
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  background: #2c5282;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+
+.btn-nuevo:hover {
+  background: #2a4a7f;
+}
+
+kbd {
+  font-size: 11px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: inherit;
+}
+
+.tabla-scroll {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+thead tr {
+  border-bottom: 2px solid #e2e8f0;
+}
+
+thead th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #718096;
+  background: #fafbfc;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid #f0f2f5;
+  transition: background 0.15s;
+}
+
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+tbody tr:hover {
+  background: #f7faff;
+}
+
+tbody td {
+  padding: 10px 14px;
+  color: #2d3748;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.col-acciones {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 99px;
+  letter-spacing: 0.04em;
+}
+
+.badge-cancelado  { background: #fff5f5; color: #9b2c2c; }
+.badge-en-ruta    { background: #ebf4ff; color: #2b6cb0; }
+.badge-autorizado { background: #f0fff4; color: #276749; }
+.badge-pendiente  { background: #fffbeb; color: #975a16; }
+.badge-completado { background: #e6fffa; color: #285e61; }
+
+.btn-editar {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #dde1e7;
+  border-radius: 6px;
+  background: #fff;
+  color: #2c5282;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-editar:hover {
+  background: #ebf4ff;
+}
+
+.btn-eliminar {
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+  border: 1px solid #fed7d7;
+  border-radius: 6px;
+  background: #fff;
+  color: #9b2c2c;
+  cursor: pointer;
+  transition: background 0.15s;
+  white-space: nowrap;
+}
+
+.btn-eliminar:hover {
+  background: #fff5f5;
+}
+
+.estado {
+  text-align: center;
+  padding: 2rem;
+  color: #718096;
+  font-size: 14px;
+}
+
+.estado.error {
+  color: #9b2c2c;
+}

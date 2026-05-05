@@ -1,0 +1,155 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.60); 
+  z-index: 100;
+  backdrop-filter: blur(2px);
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 101;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  width: 750px; 
+  max-width: 95vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Encabezado */
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fafbfc;
+  border-radius: 10px 10px 0 0;
+}
+
+.modal-header h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a2e;
+  margin: 0;
+}
+
+.btn-cerrar {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #718096;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* Cuerpo y Grid */
+.modal-body {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+}
+
+/* Campos e Inputs */
+.campo label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #718096;
+  margin-bottom: 6px;
+}
+
+.campo input, .campo select {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #dde1e7;
+  font-size: 13px;
+  color: #1a1a2e;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.campo input:focus, .campo select:focus {
+  border-color: #2c5282;
+}
+
+/* Validaciones y Errores */
+.input-error {
+  border-color: #ef4444 !important;
+  background-color: #fef2f2;
+}
+
+.alerta {
+  padding: 0.8rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.2rem;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.alerta.error {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+.alerta.exito {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+
+/* Footer y Botones */
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  background: #fafbfc;
+  border-radius: 0 0 10px 10px;
+}
+
+.modal-footer button {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid #dde1e7;
+  background: #fff;
+  color: #1a1a2e;
+  transition: all 0.15s;
+}
+
+.btn-guardar {
+  background: #2c5282 !important;
+  color: #fff !important;
+  border-color: #2c5282 !important;
+}
+
+.btn-guardar:hover:not(:disabled) {
+  background: #2a4a7f !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.modal-footer button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

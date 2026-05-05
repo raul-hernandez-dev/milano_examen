@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { ManifiestosTablaComponent } from './components/manifiestos-tabla/manifiestos-tabla';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [ManifiestosTablaComponent],
+  styles: [`:host { display: block; padding: 1.5rem; background: #f4f5f7; min-height: 100vh; }`],
+  template: `<app-manifiestos-tabla />`
 })
-export class App {
-  protected readonly title = signal('milano_examen');
-}
+export class AppComponent {}
