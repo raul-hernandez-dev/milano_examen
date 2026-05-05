@@ -23,13 +23,17 @@ La aplicación permite visualizar, crear, editar y eliminar registros de manifie
 
 - Listado de todos los manifiestos al iniciar la aplicación
 - Búsqueda de manifiesto por ID en tiempo real
+- Filtrado por estatus (Pendiente, Autorizado, En Ruta, Completado, Cancelado)
+- Filtrado por destino
+- Combinación de filtros activos simultáneamente
+- Limpiar todos los filtros con un solo clic
 - Crear nuevo manifiesto mediante modal (botón o tecla F2)
 - Editar manifiesto existente desde la tabla
 - Eliminar manifiesto con confirmación
 - Validación de campos obligatorios en el formulario
 - Cierre de modal con tecla Escape o clic en el overlay
-- Atajo de teclado F3 para enfocar la búsqueda
-- Badges de color por estatus (Pendiente, Autorizado, En Ruta, Completado, Cancelado)
+- Atajo de teclado F3 para enfocar la búsqueda por ID
+- Badges de color por estatus
 
 ---
 
@@ -65,6 +69,8 @@ Base URL: `https://carlosjamaica.com/desarrollo/funnels/api-v2/prueba.php`
 |--------|--------|-------------|
 | GET | `/prueba.php` | Obtiene todos los manifiestos |
 | GET | `/prueba.php?id={id}` | Obtiene un manifiesto por ID |
+| GET | `/prueba.php?estatus` | Obtiene el catálogo de estatus |
+| GET | `/prueba.php?destino` | Obtiene el catálogo de destinos |
 | POST | `action: "create"` | Crea un nuevo manifiesto |
 | POST | `action: "update"` | Actualiza un manifiesto existente |
 | POST | `action: "delete"` | Elimina un manifiesto por ID |
