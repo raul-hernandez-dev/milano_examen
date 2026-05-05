@@ -10,7 +10,7 @@ export class ManifiestosService {
 
   private apiUrl = 'https://carlosjamaica.com/desarrollo/funnels/api-v2/prueba.php';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getManifiestos(): Observable<ManifiestoResponse> {
     return this.http.get<ManifiestoResponse>(this.apiUrl);
@@ -30,5 +30,13 @@ export class ManifiestosService {
 
   eliminarManifiesto(id: number): Observable<any> {
     return this.http.post(this.apiUrl, { action: 'delete', id });
+  }
+
+  getEstatus(): Observable<{ success: boolean; data: string[] }> {
+    return this.http.get<{ success: boolean; data: string[] }>(`${this.apiUrl}?estatus`);
+  }
+
+  getDestinos(): Observable<{ success: boolean; data: string[] }> {
+    return this.http.get<{ success: boolean; data: string[] }>(`${this.apiUrl}?destino`);
   }
 }

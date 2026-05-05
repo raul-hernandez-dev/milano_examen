@@ -1,37 +1,77 @@
-<app-manifiesto-form #form [manifiestoEditar]="manifiestoSeleccionado" (manifiestoGuardado)="cargarTodos()" />
+<app-manifiesto-form
+  #form
+  [manifiestoEditar]="manifiestoSeleccionado"
+  (manifiestoGuardado)="cargarTodos()"
+/> 
 
 <div class="tabla-container">
+
   <div class="tabla-header">
-    <span class="tabla-titulo">Gestión de Manifiestos</span>
+    <span class="tabla-titulo">Manifiestos</span>
+
     <div class="tabla-acciones">
-      <input #busquedaInput type="number" placeholder="Buscar ID (F3)..." [(ngModel)]="buscarId"
-        (ngModelChange)="filtrarPorId()" />
-      <button class="btn-limpiar" (click)="buscarId = null; cargarTodos()">Limpiar</button>
-      <button class="btn-nuevo" (click)="form.abrirNuevo()">+ Nuevo <kbd>F2</kbd></button>
+
+      <input
+        #busquedaInput
+        type="number"
+        placeholder="Buscar por ID..."
+        [(ngModel)]="buscarId"
+        (ngModelChange)="filtrarPorId()"
+      />
+
+      <select [(ngModel)]="filtroDestino" (change)="aplicarFiltros()">
+        <option value="">Todos los destinos</option>
+        <option *ngFor="let d of destinosList" [value]="d">{{ d }}</option>
+      </select>
+
+      <select [(ngModel)]="filtroEstatus" (change)="aplicarFiltros()">
+        <option value="">Todos los estatus</option>
+        <option *ngFor="let e of estatusList" [value]="e">{{ e }}</option>
+      </select>
+
+      <button class="btn-limpiar" (click)="limpiarFiltros()">Limpiar</button>
+
+      <button class="btn-nuevo" (click)="form.abrirNuevo()">
+        + Nuevo <kbd>F2</kbd>
+      </button>
     </div>
   </div>
 
-  <div *ngIf="cargando" class="estado">Cargando datos...</div>
+  <div *ngIf="cargando" class="estado">Cargando...</div>
+  <div *ngIf="error" class="estado error">{{ error }}</div>
 
   <div class="tabla-scroll" *ngIf="!cargando && !error">
     <table>
       <thead>
         <tr>
           <th>Manifiesto</th>
+          <th>F. Apertura</th>
+          <th>F. Cierre</th>
           <th>Transportista</th>
+          <th>Tipo camión</th>
           <th>Chofer</th>
+          <th>Placas</th>
           <th>Destino</th>
           <th>Estatus</th>
-          <th>Acciones</th>
+          <th></th>
         </tr>
       </thead>
+
       <tbody>
-        <tr *ngFor="let m of manifiestos">
-          <td><strong>{{ m.manifiesto }}</strong></td>
+        <tr *ngFor="let m of manifiestosFiltrados">
+          <td>{{ m.manifiesto }}</td>
+          <td>{{ m.fecha_apertura }}</td>
+          <td>{{ m.fecha_cierre }}</td>
           <td>{{ m.transportista }}</td>
+          <td>{{ m.tipo_camion }}</td>
           <td>{{ m.chofer }}</td>
+          <td>{{ m.placas }}</td>
           <td>{{ m.destino }}</td>
-          <td><span [class]="'badge ' + getBadgeClass(m.estatus)">{{ m.estatus }}</span></td>
+          <td>
+            <span [class]="'badge ' + getBadgeClass(m.estatus)">
+              {{ m.estatus }}
+            </span>
+          </td>
           <td class="col-acciones">
             <button class="btn-editar" (click)="seleccionarEditar(m)">Editar</button>
             <button class="btn-eliminar" (click)="eliminar(m)">Eliminar</button>
@@ -40,4 +80,5 @@
       </tbody>
     </table>
   </div>
+
 </div>

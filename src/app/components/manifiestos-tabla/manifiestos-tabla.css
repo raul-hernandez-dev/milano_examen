@@ -27,23 +27,40 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
-.tabla-acciones input {
+/* INPUT Y SELECT UNIFICADOS */
+.tabla-acciones input,
+.tabla-acciones select {
   padding: 7px 10px;
   border: 1px solid #dde1e7;
   border-radius: 6px;
   font-size: 13px;
   color: #1a1a2e;
-  width: 180px;
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  background: #fff;
 }
 
-.tabla-acciones input:focus {
+/* ancho específico */
+.tabla-acciones input {
+  width: 160px;
+}
+
+.tabla-acciones select {
+  min-width: 160px;
+  cursor: pointer;
+}
+
+/* focus consistente */
+.tabla-acciones input:focus,
+.tabla-acciones select:focus {
   border-color: #2c5282;
+  box-shadow: 0 0 0 1px rgba(44, 82, 130, 0.2);
 }
 
+/* BOTONES */
 .btn-limpiar {
   padding: 7px 14px;
   font-size: 13px;
@@ -87,6 +104,7 @@ kbd {
   font-family: inherit;
 }
 
+/* TABLA */
 .tabla-scroll {
   overflow-x: auto;
 }
@@ -139,6 +157,7 @@ tbody td {
   align-items: center;
 }
 
+/* BADGES */
 .badge {
   display: inline-block;
   font-size: 11px;
@@ -149,11 +168,12 @@ tbody td {
 }
 
 .badge-cancelado  { background: #fff5f5; color: #9b2c2c; }
-.badge-en-ruta    { background: #ebf4ff; color: #2b6cb0; }
-.badge-autorizado { background: #f0fff4; color: #276749; }
+.badge-en-ruta    { background: #fff4eb; color: #db7f1c; }
+.badge-autorizado { background: #f0f5ff; color: #1f65dd; }
 .badge-pendiente  { background: #fffbeb; color: #975a16; }
 .badge-completado { background: #e6fffa; color: #285e61; }
 
+/* BOTONES ACCIONES */
 .btn-editar {
   padding: 4px 12px;
   font-size: 12px;
@@ -188,6 +208,7 @@ tbody td {
   background: #fff5f5;
 }
 
+/* ESTADOS */
 .estado {
   text-align: center;
   padding: 2rem;
@@ -197,4 +218,17 @@ tbody td {
 
 .estado.error {
   color: #9b2c2c;
+}
+
+/* RESPONSIVE (opcional pero recomendado) */
+@media (max-width: 768px) {
+  .tabla-acciones {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .tabla-acciones input,
+  .tabla-acciones select {
+    width: 100%;
+  }
 }
